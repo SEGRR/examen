@@ -2,12 +2,25 @@ const express = require('express')
 const path = require('path')
 const router = express.Router()
 const Test = require('./../models/testDataModel')
-
-router.get('/', (req,res)=>{
-    let allTest = Test.find();
+const Examiner = require('./../models/teacherModel')
+router.get('/', async (req,res)=>{
     
-    
+    let examiner = new Examiner({
+        name : "sufiyan",
+        emailId : "shaikhsufiyan2003@gmail.com",
+        password: "123456",
+    });
+     
+   try{
+       examiner = await examiner.save()
+       res.send(examiner);
+   }
+   catch(e){
+       res.send(e);
+   }
 })
+
+
 
 router.get('/:id', (req,res)=>{
       
