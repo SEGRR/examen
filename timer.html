@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="clock">
+      <h1 id="time"></h1>
+    </div>
+
+    <script>
+      var duration = 1 * 60 * 60 * 1000;
+      function Timer() {
+        sec = 1000;
+        min = 60 * sec;
+        hour = 60 * min;
+
+        Timehour = Math.floor(duration / hour);
+        TimeMin = Math.floor((duration % hour) / min);
+        TimeSec = Math.floor((duration % min) / sec);
+        let clock = document.getElementById("time");
+        clock.innerText = `${Timehour}:${TimeMin}:${TimeSec}`;
+
+        duration -= 1000;
+      }
+
+      setInterval(Timer, 1000);
+    </script>
+  </body>
+</html>

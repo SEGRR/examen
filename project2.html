@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Change the tab 
+	</title>
+</head>
+<body oncontextmenu="return false">
+	<iframe id="frameID" src="https://docs.google.com/forms/d/e/1FAIpQLScbkxWKjMYgFxm15Y69BiKapEq1GVgQh7QJ4OA4AyYBO0fhng/viewform">
+	</iframe>
+	<video src="" ></video>
+	<button id='flipCamera'>Flip</button>
+</body>
+	<script>
+		var d=0
+		document.addEventListener("visibilitychange", function() { 
+			// document.title = document.visibilityState;
+            console.log(document.visibilityState);
+			if(document.visibilityState=="hidden"){
+				alert("You Changed TAB ")
+				if(document.visibilityState=="hidden"){
+			     window.close();
+				d++;
+				
+				
+			}
+		}
+		console.log(d)
+
+});
+var front = false;
+var video = document.querySelector('video');
+  document.getElementById('flipCamera').onclick = function() { front = !front; };
+  var constraints = { video: { facingMode: (front? "user" : "environment"), width: 200, height: 100  } };
+  navigator.mediaDevices.getUserMedia(constraints)
+  .then(function(mediaStream) {
+    video.srcObject = mediaStream;
+    video.onloadedmetadata = function(e) {
+    video.play();
+};
+})
+.catch(function(err) { console.log(err.name + ": " + err.message); })
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
+document.onkeydown = function(e) {
+  if(event.keyCode == 123) {
+     return false;
+  }
+  if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+     return false;
+  }
+  if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+     return false;
+  }
+  if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+     return false;
+  }
+  if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+     return false;
+  }
+}
+
+	</script>
+</body>
+
+</html>
