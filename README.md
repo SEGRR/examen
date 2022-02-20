@@ -1,5 +1,5 @@
 
-![Logo](https://drivingrangeheroes.com/wp-content/uploads/2020/07/ProjectX-Golf.png)
+![Logo]()
 
 
 # codename project-X
