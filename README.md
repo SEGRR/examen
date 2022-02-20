@@ -1,8 +1,8 @@
 
-![Logo]()
+![Logo](https://github.com/SEGRR/Project-x/blob/main/edits/assets/img/logo1.png?raw=true)
 
 
-# codename project-X
+# Examen
 
 This is our final year project, code repository. 
 We will use  **git** for This project management.
