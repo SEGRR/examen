@@ -32,7 +32,7 @@ Whenever any code update will complete push it to this repository
 4. Install dependencies
 
 ```bash
-  npm install ejs express mongoose nodemon  
+  npm install ejs express mongoose nodemon express-session passport passport-google-oauth 
 ```
 
 5. Start the server
