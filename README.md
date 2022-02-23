@@ -1,5 +1,5 @@
 
-![Logo](https://github.com/SEGRR/Project-x/blob/main/edits/assets/img/logo1.png?raw=true)
+![Logo](https://github.com/SEGRR/Project-x/blob/main/public/assets/img/main-logo-white.jpg)
 
 
 # Examen
