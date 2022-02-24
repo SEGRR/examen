@@ -1,5 +1,5 @@
 
-![Logo](https://github.com/SEGRR/Project-x/blob/main/edits/assets/img/logo1.png?raw=true)
+![Logo](https://github.com/SEGRR/Project-x/blob/main/public/assets/img/main-logo-white.jpg)
 
 
 # Examen
@@ -32,7 +32,7 @@ Whenever any code update will complete push it to this repository
 4. Install dependencies
 
 ```bash
-  npm install ejs express mongoose nodemon  
+  npm install ejs express mongoose nodemon express-session passport passport-google-oauth 
 ```
 
 5. Start the server
