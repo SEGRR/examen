@@ -23,22 +23,23 @@ Whenever any code update will complete push it to this repository
   git clone https://github.com/SEGRR/Project-x.git
 ```
 
-3. Go to the project directory
+3. setup project
 
 ```bash
-  cd my-project
+  npm install 
 ```
 
-4. Install dependencies
 
-```bash
-  npm install ejs express mongoose nodemon express-session passport passport-google-oauth 
-```
-
-5. Start the server
+4. Start the server
 
 ```bash
   nodemon app.js
+```
+
+5. Install dependencies (if error is coming on step 4 not working)
+
+```bash
+  npm install ejs express mongoose nodemon express-session passport passport-google-oauth 
 ```
 
     
