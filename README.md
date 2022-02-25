@@ -26,17 +26,23 @@ Whenever any code update will complete push it to this repository
 3. setup project
 
 ```bash
+  cd project-x
+```
+
+4. setup project
+
+```bash
   npm install 
 ```
 
 
-4. Start the server
+5. Start the server
 
 ```bash
-  nodemon app.js
+  npm run devstart
 ```
 
-5. Install dependencies (if error is coming on step 4 not working)
+6. optional - Install dependencies (if error is coming on step 4 i.e. any package not found)
 
 ```bash
   npm install ejs express mongoose nodemon express-session passport passport-google-oauth 
