@@ -27,11 +27,13 @@ app.use(express.static('public'))
 
 
 app.get('/', (req, res) => {
-   res.sendFile(path.join(__dirname, 'public/pages/index.html'));
+  // res.sendFile(path.join(__dirname, 'public/pages/index.html'));
+  res.render('index')
 })
 
 app.get('/Login',(req,res)=>{
-  res.sendFile(path.join(__dirname,'public/pages/login.html'));
+ // res.sendFile(path.join(__dirname,'public/pages/login.html'));
+ res.render('login');
 
 })
 
