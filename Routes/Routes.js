@@ -2,7 +2,7 @@ const express = require('express')
 const path = require('path')
 const router = express.Router()
 const Test = require('./../models/testDataModel')
-const Examiner = require('./../models/teacherModel')
+const Examiner = require('../models/user')
 router.get('/', async (req,res)=>{
     
     let examiner = new Examiner({
