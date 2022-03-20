@@ -8,7 +8,7 @@ const session = require('express-session') ;
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const MongoStore = require('connect-mongo');
-
+const User = require('./models/user');
 
 const app = express();
 
@@ -103,6 +103,7 @@ passport.deserializeUser(function(obj, cb) {
 
 
 var userProfile;
+// Google login
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
@@ -117,11 +118,31 @@ passport.use(new GoogleStrategy({
   }
 ));
 
+
+// Local-statergy login using username pssword
+ var LocalStrategy = require('passport-local');
+passport.use(new LocalStrategy({
+  usernameField: "email",
+  passwordField: 'password'
+},
+  function(email, password, done) {
+    console.log('email = '+email);
+    console.log('password'+password);
+    User.findOne({ 'local.email': email, 'local.password':password }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) { return done(null, false); }
+     // if (!user.verifyPassword(password)) { return done(null, false); }
+      return done(null, user);
+    });
+  }
+));
+
+
 app.get('/auth/google', 
   passport.authenticate('google', { scope : ['profile', 'email'] }));
 
 app.get('/auth/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/error' }),
+  passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect success.
      
@@ -129,20 +150,32 @@ app.get('/auth/google/callback',
   });
 
 
-  app.post('/Login',(req,res)=>{
-    console.log(req.body);
-
+  app.post('/login', 
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  function(req, res) {
+    console.log(req.user);
+    res.send(req.user);
   });
 
 
- let checkpassword = (req,res,next)=>{
-      if(req.body.password == req.body.cpassword) next()
-      else res.render('create-account',{error:"password didnt match"});
+//  let checkpassword = (req,res,next)=>{
+//       if(req.body.password == req.body.cpassword) return next()
+//       else res.render('create-account',{error:"password didnt match"});
       
- }
+//  }
 
-  app.post('/create-account',checkpassword,(req,res)=>{
-         console.log(req.body);
+  app.post('/create-account',async(req,res)=>{
+        
+    try{
+    await User.create({username:req.body.username,
+      email:req.body.email,
+     password:req.body.password});
+
+     res.redirect('/login');}
+     catch(error){
+       console.log(error);
+       res.redirect('/create-account');
+     }
   })
   
 

@@ -2,12 +2,12 @@
 const mongoose = require("mongoose");
 
 
-const examinerModel = mongoose.Schema({
-    name : {
+const User = mongoose.Schema({
+    username : {
         type : String,
         required : true
     },
-    emailId:{
+    email:{
         type : String,
         required : true,
         unique : true,
@@ -27,6 +27,6 @@ const examinerModel = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model("Examiner",examinerModel);
+module.exports = mongoose.model("User",User);
 
 
