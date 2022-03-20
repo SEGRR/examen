@@ -1,10 +1,15 @@
 const express = require('express');
-const { rmSync } = require('fs');
 const path = require('path');
-const { route } = require('./Routes');
-const router = express.Router()
+const router = express.Router();
 
-
+router.use((req,res,next)=>{
+   if(req.isAuthenticated()) next();
+   else {
+     req.flash('unothorized',"You must Login first!");
+     res.redirect('/login');
+       
+  }
+})
 
 router.get('/',(req,res)=>{
     res.render('dashboard');
