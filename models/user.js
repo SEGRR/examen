@@ -19,7 +19,11 @@ const User = mongoose.Schema({
         minLength : 4,
         maxLength : 15
     },
-
+    googleId:{
+        type: String,
+        required:false,
+        default:''
+    },
     examHistory: {
         type: [mongoose.Types.ObjectId],
         default : [],

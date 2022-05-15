@@ -24,7 +24,8 @@ mongoose.connect(process.env.DB_URL);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // body-parser middleware
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 
 app.set('view engine', 'ejs')  // set view engine
@@ -68,7 +69,7 @@ app.get('/', (req, res) => {
 
 app.get('/Login', (req, res) => {
   // res.sendFile(path.join(__dirname,'public/pages/login.html'));
-  res.render('login', { unothorized: req.flash('unothorized'), invalidCredentials: req.flash('invalidCredentials') });
+  res.render('login', { unothorized: req.flash('unothorized'), invalidCredentials: req.flash('invalidCredentials'), logout:req.flash('logout') });
 
 });
 
@@ -78,7 +79,7 @@ app.get('/Signup', (req, res) => {
 
 app.get('/create-account', (req, res) => {
 
-  res.render('create-account');
+  res.render('create-account',{usernameError: req.flash('usernameError') , emailError: req.flash('emailError'), serverError: req.flash('serverError')});
 
 })
 
@@ -115,10 +116,23 @@ passport.use(new GoogleStrategy({
   clientSecret: GOOGLE_CLIENT_SECRET,
   callbackURL: "http://localhost:3000/auth/google/callback"
 },
-  function (accessToken, refreshToken, profile, done) {
-    userProfile = profile;
-    return done(null, userProfile);
-  }
+ (accessToken, refreshToken, profile, cb)=> {
+  User.findOne({ googleId: profile.id }, function (err, user) {
+   if(user) {return cb(err, user);}
+   else{
+    var user =new User({
+       username:profile.displayName,
+       password:"abcdef",
+       email:profile._json.email,
+       googleId:profile.id,
+     });
+
+     user.save();
+     cb(null,user);
+   }
+   
+  });
+}
 ));
 
 
@@ -129,8 +143,8 @@ passport.use(new LocalStrategy({
   passwordField: 'password'
 },
   function (email, password, done) {
-    console.log('email = ' + email);
-    console.log('password' + password);
+    // console.log('email = ' + email);
+    // console.log('password' + password);
     User.findOne({ email: email, password: password }, function (err, user) {
       if (err) { return done(err); }
       if (!user) { return done(null, false); }
@@ -145,10 +159,10 @@ app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 app.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/login' }),
+  passport.authenticate('google', { failureRedirect: '/login-fail-google' }),
   function (req, res) {
     // Successful authentication, redirect success.
-
+   // console.log(req.user);
     res.redirect('/Dashboard');
   });
 
@@ -162,6 +176,11 @@ app.post('/login',
 
 app.get('/login-fail', (req, res) => {
   req.flash('invalidCredentials', "Wrong Email or Password. Try again !");
+  res.redirect('/login');
+});
+
+app.get('/login-fail-google', (req, res) => {
+  req.flash('invalidCredentials', "User Not registered. Try again !");
   res.redirect('/login');
 })
 
@@ -177,6 +196,22 @@ app.get('/login-fail', (req, res) => {
 app.post('/create-account', async (req, res) => {
 
   try {
+          
+    let user = await User.exists({username : req.body.username});
+    if (user){
+     req.flash("usernameError","Username already registered");
+     res.redirect('/create-account');
+   }
+
+
+      user = await User.exists({email : req.body.email});
+     if (user){
+       req.flash("emailError","Email already registered");
+       res.redirect('/create-account');
+     }
+
+   
+     
     await User.create({
       username: req.body.username,
       email: req.body.email,
@@ -187,6 +222,7 @@ app.post('/create-account', async (req, res) => {
   }
   catch (error) {
     console.log(error);
+    req.flash("serverError","Some Error occupied")
     res.redirect('/create-account');
   }
 });
@@ -194,6 +230,7 @@ app.post('/create-account', async (req, res) => {
 app.get('/logout', (req, res) => {
   req.logOut();
   req.session.destroy();
+  // req.flash('logout',"Logout Successful!");
   res.redirect('/login');
 })
 

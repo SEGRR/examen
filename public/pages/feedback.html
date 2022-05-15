@@ -4,11 +4,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> Dashboard - Forms</title>
+  <title> Dashboard</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/css/tailwind.output.css" />
+  <link rel="stylesheet" href="./assets/css/tailwind.output.css" />
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-  <script src="../assets/js/init-alpine.js"></script>
+  <script src="./assets/js/init-alpine.js"></script>
 </head>
 
 <body>
@@ -16,13 +16,13 @@
     <!-- Desktop sidebar -->
     <aside class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0">
       <div class="py-4 text-gray-500 dark:text-gray-400">
-        <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="/Dashboard">
+        <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="#">
           Examen
         </a>
         <ul class="mt-6">
           <li class="relative px-6 py-3">
             <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-              href="/Dashboard">
+              href="Dashboard">
               <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path
@@ -35,10 +35,8 @@
         </ul>
         <ul>
           <li class="relative px-6 py-3">
-            <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
-              aria-hidden="true"></span>
-            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-              href="forms">
+            <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+              href="forms.html">
               <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path
@@ -49,8 +47,10 @@
             </a>
           </li>
           <li class="relative px-6 py-3">
-            <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-              href="feedback">
+            <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+              aria-hidden="true"></span>
+            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+              href="feedback.html">
               <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path
@@ -62,7 +62,7 @@
           </li>
           <li class="relative px-6 py-3">
             <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-              href="charts">
+              href="charts.html">
               <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
@@ -74,8 +74,6 @@
 
 
 
-
-        </ul>
 
     </aside>
     <!-- Mobile sidebar -->
@@ -92,13 +90,13 @@
       x-transition:leave-end="opacity-0 transform -translate-x-20" @click.away="closeSideMenu"
       @keydown.escape="closeSideMenu">
       <div class="py-4 text-gray-500 dark:text-gray-400">
-        <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="/Dashoboard">
+        <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="#">
           Examen
         </a>
         <ul class="mt-6">
           <li class="relative px-6 py-3">
             <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-              href="/dashboard">
+              href="Dashboard">
               <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path
@@ -111,10 +109,8 @@
         </ul>
         <ul>
           <li class="relative px-6 py-3">
-            <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
-              aria-hidden="true"></span>
-            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-              href="forms">
+            <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+              href="forms.html">
               <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path
@@ -125,20 +121,22 @@
             </a>
           </li>
           <li class="relative px-6 py-3">
-            <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-              href="feedback">
+            <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+              aria-hidden="true"></span>
+            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+              href="feedback.html">
               <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
                 </path>
               </svg>
-              <span class="ml-4">Feedback</span>
+              <span class="ml-4">Cards</span>
             </a>
           </li>
           <li class="relative px-6 py-3">
             <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-              href="charts">
+              href="charts.html">
               <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
@@ -149,13 +147,15 @@
           </li>
 
 
+
+
     </aside>
     <div class="flex flex-col flex-1">
       <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
         <div
           class="container flex items-center justify-between h-full px-6 mx-auto text-purple-600 dark:text-purple-300">
           <!-- Mobile hamburger -->
-          <button class="p-1 -ml-1 mr-5 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
+          <button class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
             @click="toggleSideMenu" aria-label="Menu">
             <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd"
@@ -302,216 +302,98 @@
       </header>
       <main class="h-full pb-16 overflow-y-auto">
         <div class="container px-6 mx-auto grid">
-          <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            Forms
-          </h2>
-
 
           <!-- General elements -->
           <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
-            Elements
+            ExamName
           </h4>
           <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
             <label class="block text-sm">
-              <span class="text-gray-700 dark:text-gray-400">Name</span>
-              <input
-                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                placeholder="Jane Doe" />
+              <span class="text-gray-700 dark:text-gray-400">Piyush Ghante</span>
+              <td class="px-4 py-3 text-xs">
+                <span
+                  class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                  New
+                </span>
+              </td><br>
+
+
             </label>
 
-            <div class="mt-4 text-sm">
-              <span class="text-gray-700 dark:text-gray-400">
-                Account Type
-              </span>
-              <div class="mt-2">
-                <label class="inline-flex items-center text-gray-600 dark:text-gray-400">
-                  <input type="radio"
-                    class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                    name="accountType" value="personal" />
-                  <span class="ml-2">Personal</span>
-                </label>
-                <label class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400">
-                  <input type="radio"
-                    class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                    name="accountType" value="busines" />
-                  <span class="ml-2">Business</span>
-                </label>
-              </div>
-            </div>
+
 
             <label class="block mt-4 text-sm">
               <span class="text-gray-700 dark:text-gray-400">
-                Requested Limit
+                <h2>Message</h2>
               </span>
-              <select
-                class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                <option>$1,000</option>
-                <option>$5,000</option>
-                <option>$10,000</option>
-                <option>$25,000</option>
-              </select>
-            </label>
-
-            <label class="block mt-4 text-sm">
-              <span class="text-gray-700 dark:text-gray-400">
-                Multiselect
-              </span>
-              <select
-                class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-multiselect focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                multiple>
-                <option>Option 1</option>
-                <option>Option 2</option>
-                <option>Option 3</option>
-                <option>Option 4</option>
-                <option>Option 5</option>
-              </select>
-            </label>
-
-            <label class="block mt-4 text-sm">
-              <span class="text-gray-700 dark:text-gray-400">Message</span>
-              <textarea
-                class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                rows="3" placeholder="Enter some long form content."></textarea>
+              <div class="text-gray-700 dark:text-gray-400">
+                Getting feedback only at the end of each Sprint That is the wrong set-up. You need validation from the
+                users as often as possible, especially during the early stages of developmen Getting feedback only at
+                the end of each Sprint That is the wrong set-up. You need validation from the
+                users as often as possible, especially during the early stages of developmen Getting feedback only at
+                the end of each Sprint That is the wrong set-up. You need validation from the
+                users as often as possible, especially during the early stages of developmenGetting feedback only at the
+                end of each Sprint That is the wrong set-up. You need validation from the
+                users as often as possible, especially during the early stages of developmen</div>
             </label>
 
             <div class="flex mt-6 text-sm">
               <label class="flex items-center dark:text-gray-400">
-                <input type="checkbox"
+                <input type="radio"
                   class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" />
                 <span class="ml-2">
-                  I agree to the
-                  <span class="underline">privacy policy</span>
-                </span>
+                  Read
               </label>
             </div>
           </div>
 
-          <!-- Validation inputs -->
-          <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
-            Validation
-          </h4>
-          <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-            <!-- Invalid input -->
-            <label class="block text-sm">
-              <span class="text-gray-700 dark:text-gray-400">
-                Invalid input
-              </span>
-              <input
-                class="block w-full mt-1 text-sm border-red-600 dark:text-gray-300 dark:bg-gray-700 focus:border-red-400 focus:outline-none focus:shadow-outline-red form-input"
-                placeholder="Jane Doe" />
-              <span class="text-xs text-red-600 dark:text-red-400">
-                Your password is too short.
-              </span>
-            </label>
-
-            <!-- Valid input -->
-            <label class="block mt-4 text-sm">
-              <span class="text-gray-700 dark:text-gray-400">
-                Valid input
-              </span>
-              <input
-                class="block w-full mt-1 text-sm border-green-600 dark:text-gray-300 dark:bg-gray-700 focus:border-green-400 focus:outline-none focus:shadow-outline-green form-input"
-                placeholder="Jane Doe" />
-              <span class="text-xs text-green-600 dark:text-green-400">
-                Your password is strong.
-              </span>
-            </label>
-
-            <!-- Helper text -->
-            <label class="block mt-4 text-sm">
-              <span class="text-gray-700 dark:text-gray-400">
-                Helper text
-              </span>
-              <input
-                class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
-                placeholder="Jane Doe" />
-              <span class="text-xs text-gray-600 dark:text-gray-400">
-                Your password must be at least 6 characters long.
-              </span>
-            </label>
-          </div>
-
-          <!-- Inputs with icons -->
-          <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
-            Icons
-          </h4>
           <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
             <label class="block text-sm">
-              <span class="text-gray-700 dark:text-gray-400">Icon left</span>
-              <!-- focus-within sets the color for the icon when input is focused -->
-              <div class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400">
-                <input
-                  class="block w-full pl-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
-                  placeholder="Jane Doe" />
-                <div class="absolute inset-y-0 flex items-center ml-3 pointer-events-none">
-                  <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                    stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                    <path
-                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                    </path>
-                  </svg>
-                </div>
-              </div>
+              <span class="text-gray-700 dark:text-gray-400">Piyush Ghante</span>
+              <td class="px-4 py-3 text-xs">
+                <span
+                  class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600">
+                  Old
+                </span>
+              </td></br>
+
+
             </label>
 
-            <label class="block mt-4 text-sm">
-              <span class="text-gray-700 dark:text-gray-400">Icon right</span>
-              <!-- focus-within sets the color for the icon when input is focused -->
-              <div class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400">
-                <input
-                  class="block w-full pr-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
-                  placeholder="Jane Doe" />
-                <div class="absolute inset-y-0 right-0 flex items-center mr-3 pointer-events-none">
-                  <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                    stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                    <path
-                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                    </path>
-                  </svg>
-                </div>
-              </div>
-            </label>
-          </div>
 
-          <!-- Inputs with buttons -->
-          <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
-            Buttons
-          </h4>
-          <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-            <label class="block text-sm">
-              <span class="text-gray-700 dark:text-gray-400">
-                Button left
-              </span>
-              <div class="relative">
-                <input
-                  class="block w-full pl-20 mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
-                  placeholder="Jane Doe" />
-                <button
-                  class="absolute inset-y-0 px-4 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-l-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                  Click
-                </button>
-              </div>
-            </label>
 
             <label class="block mt-4 text-sm">
               <span class="text-gray-700 dark:text-gray-400">
-                Button right
+                <h2>Message</h2>
               </span>
-              <div class="relative text-gray-500 focus-within:text-purple-600">
-                <input
-                  class="block w-full pr-20 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
-                  placeholder="Jane Doe" />
-                <button
-                  class="absolute inset-y-0 right-0 px-4 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-r-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                  Click
-                </button>
-              </div>
+              <div class="text-gray-700 dark:text-gray-400"> Getting feedback only at the end of each Sprint That is the
+                wrong set-up. You need validation from the
+                users as often as possible, especially during the early stages of developmen Getting feedback only at
+                the end of each Sprint That is the wrong set-up. You need validation from the
+                users as often as possible, especially during the early stages of developmen Getting feedback only at
+                the end of each Sprint That is the wrong set-up. You need validation from the
+                users as often as possible, especially during the early stages of developmenGetting feedback only at the
+                end of each Sprint That is the wrong set-up. You need validation from the
+                users as often as possible, especially during the early stages of developmen</div>
+
             </label>
+
+            <div class="flex mt-6 text-sm">
+              <label class="flex items-center dark:text-gray-400">
+                <input type="radio"
+                  class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" />
+                <span class="ml-2">
+                  Read
+              </label>
+            </div>
           </div>
+
+
         </div>
-      </main>
     </div>
   </div>
+  </main>
+
 </body>
 
 </html>
