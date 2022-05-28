@@ -59,8 +59,7 @@ app.use(express.urlencoded({ extended: false }))
 const port = 3000
 
 app.use('/dashboard', dashboardRouter);
-
-
+app.use('/exam',router);
 
 app.get('/', (req, res) => {
   // res.sendFile(path.join(__dirname, 'public/pages/index.html'));
@@ -138,6 +137,7 @@ passport.use(new GoogleStrategy({
 
 // Local-statergy login using username pssword
 var LocalStrategy = require('passport-local');
+const { Router } = require('express');
 passport.use(new LocalStrategy({
   usernameField: "email",
   passwordField: 'password'

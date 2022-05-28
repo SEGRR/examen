@@ -1,18 +1,13 @@
 const mongoose = require('mongoose');
+const { stringify } = require('nodemon/lib/utils');
 
 
-const responses = mongoose.Schema({
-    name: String,
-    email: String,
-    marks: Number,
-    answers: []
-});
 
 const exam = mongoose.Schema({
     title:{
         type:String,
         required:true,
-        maxLength: 20
+    
     },
     description:{
         type:String,
@@ -47,18 +42,30 @@ const exam = mongoose.Schema({
    creationDate:{type: Date, default: ()=> Date.now()},
    startTime: Date,
    endTime : Date,
-   duration:Date,
+   duration:{
+       hh: String,
+       mm: String,
+       date: Date
+   },
    maxAttempt:{
        type:Number,
        required:false,
        default:100
    },
    responses: {type:Number, default:0},
+
+   responsesData :
+            {
+                type: [mongoose.Types.ObjectId],
+                default : []
+    },
+
    OnTheSpotResult:{
        type:Boolean,
        default: false
    },
   
+   creator: String
 });
 
 module.exports = mongoose.model('exam',exam);

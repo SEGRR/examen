@@ -7,6 +7,7 @@
     "body-parser": "^1.19.2",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^4.6.0",
+    "csv-writer": "^1.6.0",
     "dotenv": "^16.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
@@ -20,10 +21,13 @@
     "passport-google-oauth": "^2.0.0",
     "passport-local": "^1.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "tailwindcss": "^3.0.24"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "examen": "nodemon app.js"
+    "examen": "nodemon app.js",
+    "build:tailwind": "tailwindcss -i ./public/assets/css/tailwind.css -o ./public/assets/css/style.css"
   },
   "author": "",
   "license": "ISC"

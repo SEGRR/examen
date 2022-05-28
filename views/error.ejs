@@ -8,6 +8,6 @@
   </head>
   <body>
     <h3>Opps! some issue :</h3>
-    <p><%= error %></p>
+    <p><% if(invalidCode > 0){ %> <%= error %> <% } %></p>
   </body>
 </html>
