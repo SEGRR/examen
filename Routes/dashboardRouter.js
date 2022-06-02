@@ -7,6 +7,7 @@ const Responses = require('../models/responses');
 const moment = require('moment');
 const csvwriter = require('csv-writer');
 const exam = require('../models/exam');
+const Feedback = require("../models/feedback");
 const router = express.Router();
 
 router.use((req,res,next)=>{
@@ -139,7 +140,10 @@ router.get('/', async (req,res)=>{
 
 
 router.get('/feedback', async (req,res)=>{
-  res.render('feedback');
+
+   let feedbacks = await Feedback.find();
+   let user = req.user
+  res.render('feedback',{feedbacks,user,moment});
 });
 
 
@@ -231,8 +235,8 @@ router.get('/exames/:id/downloadresponses', async(req,res)=>{
       if(res != null) respones.push(res);
     }
 
-   
-    let filename = exam.title +"_"+ "responses_"+new Date().getTime()+'.csv';
+    
+    let filename = 'res.csv';
     let filepath = path.join(__dirname,"../csv",filename);
      fs.open(filepath,(err, file)=>{
       var createCsvWriter = csvwriter.createObjectCsvWriter
@@ -261,7 +265,6 @@ router.get('/exames/:id/downloadresponses', async(req,res)=>{
           console.log(e.message);
           //req.flash("fileError","cannot download Respones file, Try again Later !"); res.redirect(`/Dashboard/exames/${req.params.id}`);
         });
-        fs.unlink(filepath, (err)=>{console.log(err);})
      });
   
    
@@ -349,5 +352,9 @@ req.flash("completeEdit", `Exam edited successfully`);
 res.redirect(`/dashboard/exames/${req.params.id}`);
 
 });
+
+
+
+
 
 module.exports = router

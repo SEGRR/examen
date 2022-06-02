@@ -1,14 +1,9 @@
 const express = require('express')
-const path = require('path')
 const router = express.Router()
-const Test = require('./../models/testDataModel')
-const User = require('../models/user');
 const Exam = require('../models/exam');
 const Response = require('../models/responses');
 const moment = require('moment');
-const { Mongoose } = require('mongoose');
-const responses = require('../models/responses');
-
+const Feedback = require("../models/feedback");
 
 
 
@@ -121,18 +116,40 @@ router.post('/:id/evaluation', async (req,res)=>{
 
      await Exam.updateOne({'_id':exam._id},{'$push':{'responsesData':responsesaved._id},responses:(exam.responses + 1)});
      
+      let data = {
+          examid : exam._id,
+          responseid: response._id
+      }
       
-     res.render('examsuccess');
+     res.render('examsuccess',{data});
     }catch(e){
         console.log(e.message);
     }
 });
 
 
-router.post('/feedback', (req,res)=>{
+router.post('/feedback', async (req,res)=>{
 
+ if(req.body.feedback != ''){
+ try{
+   let res = Response.findById(req.body.responseid);
+    let exam = Response.findById(req.body.examid).select('title');  
+   let feedback = new Feedback({
+       name: res.name,
+       email: res.email,
+       text: req.body.feedback,
+       ofExam: exam._id,
+       examName: exam.title
+   });
 
- res.redirect('/');
+  feedback = await feedback.save();
+
+  await Exam.updateOne({"_id":exam._id},{"$push":{"feedbacks":feedback._id}});
+
+ }catch(e){ console.log(e);}
+ }
+
+  res.redirect('/')
 
 });
 

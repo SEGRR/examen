@@ -65,7 +65,11 @@ const exam = mongoose.Schema({
        default: false
    },
   
-   creator: String
+   creator: String,
+   feedbacks:{
+       type: [mongoose.Types.ObjectId],
+       default: []
+   }
 });
 
 module.exports = mongoose.model('exam',exam);
