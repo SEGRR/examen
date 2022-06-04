@@ -1,5 +1,5 @@
 require('dotenv').config();
-const express = require('express');  // importing exoress library 
+const express = require('express');
 const path = require('path');
 const router = require('./Routes/Routes');
 const dashboardRouter = require('./Routes/dashboardRouter');
@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-app.set('view engine', 'ejs')  // set view engine
+app.set('view engine', 'ejs');  // set view engine
 
 
 // flash massages setup
@@ -62,9 +62,8 @@ app.use('/dashboard', dashboardRouter);
 app.use('/exam',router);
 
 app.get('/', (req, res) => {
-  // res.sendFile(path.join(__dirname, 'public/pages/index.html'));
   res.render('index')
-})
+});
 
 app.get('/Login', (req, res) => {
   // res.sendFile(path.join(__dirname,'public/pages/login.html'));
@@ -85,14 +84,15 @@ app.get('/create-account', (req, res) => {
 app.get('/forgot-password', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/pages/forgot-password.html'));
 
-})
+});
+
+
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
-})
+});
 
-// app.get("/Dashboard",(req,res)=>{
-//   res.render('dashboard',{user : userProfile})
-// })
+
 
 passport.serializeUser((user, cb) => {
   cb(null, user);
@@ -110,11 +110,14 @@ var userProfile;
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+
+
 passport.use(new GoogleStrategy({
   clientID: GOOGLE_CLIENT_ID,
   clientSecret: GOOGLE_CLIENT_SECRET,
   callbackURL: "http://localhost:3000/auth/google/callback"
 },
+// function to save or create new user from google
  (accessToken, refreshToken, profile, cb)=> {
   User.findOne({ googleId: profile.id }, function (err, user) {
    if(user) {return cb(err, user);}
@@ -142,6 +145,7 @@ passport.use(new LocalStrategy({
   usernameField: "email",
   passwordField: 'password'
 },
+
   function (email, password, done) {
     // console.log('email = ' + email);
     // console.log('password' + password);
@@ -185,13 +189,6 @@ app.get('/login-fail-google', (req, res) => {
 })
 
 
-//  let checkpassword = (req,res,next)=>{
-//       if(req.body.password == req.body.cpassword) return next()
-//       else 
-//       { res.render('create-account',{error:"password didnt match"});
-//           next()}
-
-//  }
 
 app.post('/create-account', async (req, res) => {
 
@@ -222,7 +219,7 @@ app.post('/create-account', async (req, res) => {
   }
   catch (error) {
     console.log(error);
-    req.flash("serverError","Some Error occupied")
+    req.flash("serverError","Some Error occupied");
     res.redirect('/create-account');
   }
 });

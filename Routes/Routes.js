@@ -6,6 +6,21 @@ const moment = require('moment');
 const Feedback = require("../models/feedback");
 
 
+router.get('/', (req,res)=>{
+
+    let invalidCode = req.flash('invalidCode');
+   res.render('examcode',{invalidCode});
+
+});
+
+
+
+router.post('/', (req,res)=>{
+
+    res.redirect(`/exam/${req.body.code}`);
+
+});
+
 
 router.post('/:id/startexam', async (req,res)=>{
       
@@ -57,7 +72,7 @@ router.get('/:id', async(req,res)=>{
             
           if(exam == null ){
               req.flash('invalidCode', "Enter Exam does not Exist");
-              res.redirect('/error');
+              res.redirect('/exam');
           }
           
          else if(moment().isBefore(exam.startTime)){
@@ -103,12 +118,14 @@ router.post('/:id/evaluation', async (req,res)=>{
      }
 
      console.log(answersl);
+      let status = "passed"
+     if(marks < 1 ) status = "Failed";
      
      let response = new Response({
          name:req.body.name,
          email:req.body.email,
          marks:marks,
-         status:"passed",
+         status: status,
          ofexam:exam._id
      });
 

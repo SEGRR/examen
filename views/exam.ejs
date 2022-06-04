@@ -121,13 +121,13 @@
   </div>
 </div>
 
-<div id="keyboard-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 md:inset-0 h-modal md:h-full">
+<div id="activity-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 md:inset-0 h-modal md:h-full">
   <div class="relative p-4 w-full max-w-md h-full md:h-auto">
       <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
           <div class="p-6 text-center">
               <svg class="mx-auto mb-4 w-14 h-14 text-gray-400 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
               <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Malicious Activity Detected, This will lead to terminating Exam </h3>
-              <button data-modal-toggle="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+              <button onclick="activityModal.hide()" data-modal-toggle="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
                   I Acknowledge
               </button>
           </div>
@@ -143,7 +143,7 @@
               <svg class="mx-auto mb-4 w-14 h-14 text-gray-400 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
               <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Exam is starting Wait for Sometime</h3>
               <button id="start_btn"  onclick="setFullscreen()" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
-                Start Exam</button>
+                10</button>
           </div>
       </div>
   </div>
@@ -155,7 +155,37 @@
 
 
   <script defer>
-      const video = document.getElementById('video')
+
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
+document.onkeydown = function(e) {
+
+
+
+  
+  return false;
+}
+
+
+var t = 0
+        document.addEventListener("visibilitychange", function () {
+            console.log(document.visibilityState);
+            if (document.visibilityState == "hidden") {
+                t++;
+                if (t > 2) {
+                   window.close();
+
+                }
+                //alert("You Changed Tab " + t + " time")
+                activityModal.show();
+                document.visibilityState = "visible";
+
+            }
+
+        });
+
+  const video = document.getElementById('video')
 var detectionInterval = false;
 var timerInterval = false;
 var interval = null;
@@ -173,10 +203,11 @@ onShow: () => {
 let noface = document.getElementById('no-face-modal');
 let multiface = document.getElementById('multi-face-modal')
 let fullscr = document.getElementById('fullscreen-modal');
+let actvitymodal = document.getElementById('activity-modal');
 const nofacemodal = new Modal(noface,options);
 const multiplefacesmodal = new Modal(multiface,options);
 const fullscreenmodal = new Modal(fullscr,options);
-
+const activityModal = new Modal(actvitymodal,options);
 
 function startVideo() {
 navigator.mediaDevices.getUserMedia({
@@ -198,10 +229,38 @@ if(prediction.length > 1) multiplefacesmodal.show();
 
 startVideo();
 video.addEventListener("loadeddata", async ()=>{
+
 model =  await blazeface.load();
 detectionInterval = true;
 interval = setInterval(detectFaces,2000);
+
+
 });
+
+
+ function waitToload(){
+  fullscreenmodal.show();
+
+  let start_btn = document.getElementById('start_btn');
+  start_btn.disabled = true;
+  let timing = 10;
+  
+   let wait = setInterval(()=>{
+      start_btn.innerText = timing;
+      timing--;
+     if(timing < 1){
+       start_btn.innerText = "Start Exam";
+       start_btn.disabled = false;
+       clearInterval(wait);
+     }
+   },1000);
+
+
+ 
+
+}
+
+waitToload();
 
 
 
@@ -237,7 +296,7 @@ function getPermissions() {
 
 
        
-      var duration = '<%= exam.duration.date.getTime() %>';
+      var duration = '<%- exam.duration.date.getTime() %>';
     function Timer() {
         if(timerInterval){
       sec = 1000;
@@ -259,7 +318,6 @@ function getPermissions() {
 
 
    
-   fullscreenmodal.show();
     
    function setFullscreen(){
    document.documentElement.requestFullscreen()
@@ -277,6 +335,14 @@ function clear(){
   clearInterval(interval);
 
 }
+
+
+
+
+
+
+
+
   </script>
   </body>
 </html>
