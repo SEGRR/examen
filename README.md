@@ -4,6 +4,8 @@
 
 # Examen
 
+## A Online MCQ based examination system with Paper setting, Proctoring, result analysis & result publishing.
+
 This is our final year project, code repository. 
 We will use  **git** for This project management.
 Whenever any code update will complete push it to this repository 
